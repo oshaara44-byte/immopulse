@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import ProspectActionControls from "@/components/ProspectActionControls";
 
 type ActionProspect = {
   id: string;
@@ -153,6 +154,7 @@ export default async function ActionsPage() {
             <h2 className="text-2xl font-semibold">
               Aucune action urgente
             </h2>
+
             <p className="mt-3 text-slate-300">
               Les demandes à traiter apparaîtront ici.
             </p>
@@ -233,6 +235,14 @@ export default async function ActionsPage() {
                     {prospect.notes}
                   </p>
                 ) : null}
+
+                <ProspectActionControls
+                  prospectId={prospect.id}
+                  initialStatus={prospect.status}
+                  initialPriority={prospect.priority}
+                  initialNextActionAt={prospect.next_action_at}
+                  initialNotes={prospect.notes}
+                />
               </article>
             ))}
           </section>

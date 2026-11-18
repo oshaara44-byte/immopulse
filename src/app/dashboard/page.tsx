@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import TrialCountdown from "@/components/TrialCountdown";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -18,6 +19,7 @@ export default async function DashboardPage() {
       .select("full_name, preferred_language, role, organization_id")
       .eq("id", user.id)
       .maybeSingle(),
+
     supabase
       .from("trials")
       .select("status, mode, starts_at, ends_at, selected_plan")
@@ -39,7 +41,9 @@ export default async function DashboardPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
               ImmoPulse
             </p>
+
             <h1 className="mt-2 text-4xl font-bold">Tableau de bord</h1>
+
             <p className="mt-2 text-slate-300">
               Bienvenue {profile?.full_name || user.email}.
             </p>
@@ -55,12 +59,19 @@ export default async function DashboardPage() {
           </form>
         </header>
 
+        <TrialCountdown
+          endsAt={trial?.ends_at ?? null}
+          status={trial?.status ?? null}
+        />
+
         <section className="mt-8 grid gap-6 md:grid-cols-3">
           <article className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
             <p className="text-sm text-slate-400">Profil</p>
+
             <h2 className="mt-2 text-xl font-semibold">
               {profile?.role || "Non défini"}
             </h2>
+
             <p className="mt-2 text-sm text-slate-400">
               Langue : {profile?.preferred_language || "en"}
             </p>
@@ -68,9 +79,11 @@ export default async function DashboardPage() {
 
           <article className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
             <p className="text-sm text-slate-400">Statut de l’essai</p>
+
             <h2 className="mt-2 text-xl font-semibold text-cyan-300">
               {trial?.status || "Non disponible"}
             </h2>
+
             <p className="mt-2 text-sm text-slate-400">
               Mode : {trial?.mode || "discovery"}
             </p>
@@ -78,7 +91,9 @@ export default async function DashboardPage() {
 
           <article className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
             <p className="text-sm text-slate-400">Fin de l’essai</p>
+
             <h2 className="mt-2 text-xl font-semibold">{endsAt}</h2>
+
             <p className="mt-2 text-sm text-slate-400">
               Forfait : {trial?.selected_plan || "À choisir"}
             </p>
@@ -87,6 +102,7 @@ export default async function DashboardPage() {
 
         <section className="mt-8 rounded-2xl border border-dashed border-slate-700 bg-slate-900/60 p-8">
           <h2 className="text-2xl font-semibold">Prochaines actions</h2>
+
           <p className="mt-3 max-w-2xl text-slate-300">
             Ajoutez votre premier bien, centralisez vos prospects et préparez
             vos premières relances. Les fonctions seront ajoutées

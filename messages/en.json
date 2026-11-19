@@ -1,0 +1,41 @@
+{
+  "common": {
+    "appName": "ImmoPulse",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "logout": "Log out"
+  },
+  "auth": {
+    "login": "Log in",
+    "register": "Create an account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot your password?",
+    "resetPassword": "Reset your password",
+    "startTrial": "Start your 14-day trial"
+  },
+  "trial": {
+    "freeTrial": "14-day free trial",
+    "daysRemaining": "{days, plural, =0 {Your trial ends today.} one {You have 1 trial day left.} other {You have {days} trial days left.}}",
+    "noPayment": "No payment is taken in this test version."
+  },
+  "pricing": {
+    "title": "Choose the plan that fits your business",
+    "essential": "Essential",
+    "professional": "Professional",
+    "agency": "Agency",
+    "perMonth": "/ month",
+    "recommended": "Recommended"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "properties": "My properties",
+    "prospects": "My prospects",
+    "actions": "Today's actions",
+    "alerts": "Property alerts",
+    "matches": "Property matches",
+    "pricing": "Pricing"
+  }
+}

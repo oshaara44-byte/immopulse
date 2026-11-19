@@ -1,0 +1,41 @@
+{
+  "common": {
+    "appName": "ImmoPulse",
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "back": "Volver",
+    "logout": "Cerrar sesión"
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Crear una cuenta",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "resetPassword": "Restablecer contraseña",
+    "startTrial": "Comenzar prueba de 14 días"
+  },
+  "trial": {
+    "freeTrial": "Prueba gratuita de 14 días",
+    "daysRemaining": "{days, plural, =0 {Tu prueba termina hoy.} one {Te queda 1 día de prueba.} other {Te quedan {days} días de prueba.}}",
+    "noPayment": "No se realiza ningún pago en esta versión de prueba."
+  },
+  "pricing": {
+    "title": "Elige el plan adecuado para tu actividad",
+    "essential": "Esencial",
+    "professional": "Profesional",
+    "agency": "Agencia",
+    "perMonth": "/ mes",
+    "recommended": "Recomendado"
+  },
+  "navigation": {
+    "dashboard": "Panel de control",
+    "properties": "Mis propiedades",
+    "prospects": "Mis prospectos",
+    "actions": "Acciones del día",
+    "alerts": "Alertas inmobiliarias",
+    "matches": "Correspondencias inmobiliarias",
+    "pricing": "Precios"
+  }
+}

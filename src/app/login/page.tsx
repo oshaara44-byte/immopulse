@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/browser";
 import { useRouter } from "next/navigation";
 
@@ -46,7 +47,9 @@ export default function LoginPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
             ImmoPulse
           </p>
+
           <h1 className="mt-3 text-4xl font-bold">Se connecter</h1>
+
           <p className="mt-3 text-slate-300">
             Retrouvez vos biens, prospects et actions prioritaires.
           </p>
@@ -58,6 +61,7 @@ export default function LoginPage() {
         >
           <label className="block">
             <span className="mb-2 block text-sm text-slate-300">Email</span>
+
             <input
               required
               type="email"
@@ -71,6 +75,7 @@ export default function LoginPage() {
             <span className="mb-2 block text-sm text-slate-300">
               Mot de passe
             </span>
+
             <input
               required
               type="password"
@@ -79,6 +84,15 @@ export default function LoginPage() {
               className="w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 outline-none focus:border-cyan-400"
             />
           </label>
+
+          <div className="text-right">
+            <Link
+              href="/forgot-password"
+              className="text-sm text-cyan-300 hover:underline"
+            >
+              Mot de passe oublié ?
+            </Link>
+          </div>
 
           <button
             disabled={isLoading}

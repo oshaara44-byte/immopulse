@@ -2,6 +2,32 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import TrialCountdown from "@/components/TrialCountdown";
 
+const planLabels: Record<string, string> = {
+  essential: "Essentiel",
+  professional: "Professionnel",
+  agency: "Agence",
+};
+
+const trialStatusLabels: Record<string, string> = {
+  registered: "Inscription enregistrée",
+  trial_active: "Essai actif",
+  trial_expiring: "Essai bientôt terminé",
+  trial_expired: "Essai terminé",
+  plan_selected: "Forfait sélectionné",
+  payment_pending: "Paiement en attente",
+  active_subscriber: "Abonnement actif",
+  cancelled: "Annulé",
+  data_deletion_requested: "Suppression demandée",
+};
+
+const roleLabels: Record<string, string> = {
+  agent: "Agent immobilier",
+  agency_admin: "Administrateur d’agence",
+  buyer: "Acheteur",
+  tenant: "Locataire",
+  platform_admin: "Administrateur plateforme",
+};
+
 export default async function DashboardPage() {
   const supabase = await createClient();
 
@@ -32,6 +58,18 @@ export default async function DashboardPage() {
   const endsAt = trial?.ends_at
     ? new Date(trial.ends_at).toLocaleDateString("fr-FR")
     : "Non disponible";
+
+  const readableRole = profile?.role
+    ? roleLabels[profile.role] || profile.role
+    : "Non défini";
+
+  const readableTrialStatus = trial?.status
+    ? trialStatusLabels[trial.status] || trial.status
+    : "Non disponible";
+
+  const readablePlan = trial?.selected_plan
+    ? planLabels[trial.selected_plan] || trial.selected_plan
+    : "À choisir";
 
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
@@ -68,9 +106,7 @@ export default async function DashboardPage() {
           <article className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
             <p className="text-sm text-slate-400">Profil</p>
 
-            <h2 className="mt-2 text-xl font-semibold">
-              {profile?.role || "Non défini"}
-            </h2>
+            <h2 className="mt-2 text-xl font-semibold">{readableRole}</h2>
 
             <p className="mt-2 text-sm text-slate-400">
               Langue : {profile?.preferred_language || "en"}
@@ -81,7 +117,7 @@ export default async function DashboardPage() {
             <p className="text-sm text-slate-400">Statut de l’essai</p>
 
             <h2 className="mt-2 text-xl font-semibold text-cyan-300">
-              {trial?.status || "Non disponible"}
+              {readableTrialStatus}
             </h2>
 
             <p className="mt-2 text-sm text-slate-400">
@@ -95,7 +131,7 @@ export default async function DashboardPage() {
             <h2 className="mt-2 text-xl font-semibold">{endsAt}</h2>
 
             <p className="mt-2 text-sm text-slate-400">
-              Forfait : {trial?.selected_plan || "À choisir"}
+              Forfait : {readablePlan}
             </p>
           </article>
         </section>

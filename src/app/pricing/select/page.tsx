@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/browser";
@@ -32,7 +36,7 @@ const planDetails: Record<
   },
 };
 
-export default function SelectPlanPage() {
+function SelectPlanContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const requestedPlan = searchParams.get("plan");
@@ -100,7 +104,7 @@ export default function SelectPlanPage() {
       setIsLoading(false);
     }
 
-    selectPlan();
+    void selectPlan();
   }, [requestedPlan, router]);
 
   const selectedPlan =
@@ -173,5 +177,23 @@ export default function SelectPlanPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+function SelectPlanFallback() {
+  return (
+    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
+      <div className="mx-auto max-w-2xl rounded-2xl border border-slate-800 bg-slate-900 p-8">
+        <p className="text-slate-300">Chargement du forfait...</p>
+      </div>
+    </main>
+  );
+}
+
+export default function SelectPlanPage() {
+  return (
+    <Suspense fallback={<SelectPlanFallback />}>
+      <SelectPlanContent />
+    </Suspense>
   );
 }

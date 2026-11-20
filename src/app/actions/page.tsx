@@ -1,3 +1,4 @@
+import AppNavigation from "@/components/AppNavigation";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -71,7 +72,7 @@ export default async function ActionsPage() {
 
   if (!profile?.organization_id) {
     return (
-      <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
+      <main className="min-h-screen bg-slate-950 px-6 py-12 text-white"><AppNavigation />
         <div className="mx-auto max-w-5xl">
           <p className="rounded-lg border border-red-500/40 bg-red-950/40 p-4 text-red-200">
             Organisation introuvable.

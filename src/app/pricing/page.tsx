@@ -1,3 +1,4 @@
+import AppNavigation from "@/components/AppNavigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 
@@ -88,7 +89,7 @@ export default async function PricingPage() {
     : fallbackPlans) as Plan[];
 
   return (
-    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
+    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white"><AppNavigation />
       <div className="mx-auto max-w-7xl">
         <header className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">

@@ -1,3 +1,4 @@
+import AppNavigation from "@/components/AppNavigation";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import TrialCountdown from "@/components/TrialCountdown";
@@ -72,7 +73,7 @@ export default async function DashboardPage() {
     : "À choisir";
 
   return (
-    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
+    <main className="min-h-screen bg-slate-950 px-6 py-12 text-white"><AppNavigation />
       <div className="mx-auto max-w-5xl">
         <header className="flex flex-col gap-4 border-b border-slate-800 pb-8 sm:flex-row sm:items-center sm:justify-between">
           <div>

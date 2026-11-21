@@ -1,22 +1,45 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import {
+  FormEvent,
+  Suspense,
+  useState,
+} from "react";
+import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/browser";
 
 type Transaction = "sale" | "rent";
 
-export default function NewAlertPage() {
+function NewAlertContent() {
+  const searchParams = useSearchParams();
+
   const [email, setEmail] = useState("");
-  const [transaction, setTransaction] = useState<Transaction>("sale");
-  const [propertyType, setPropertyType] = useState("apartment");
-  const [city, setCity] = useState("");
-  const [area, setArea] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [minSurface, setMinSurface] = useState("");
-  const [minRooms, setMinRooms] = useState("");
-  const [bedrooms, setBedrooms] = useState("");
-  const [language, setLanguage] = useState("en");
+  const [transaction, setTransaction] = useState<Transaction>(
+    searchParams.get("transaction") === "rent" ? "rent" : "sale",
+  );
+  const [propertyType, setPropertyType] = useState(
+    searchParams.get("property_type") || "apartment",
+  );
+  const [city, setCity] = useState(searchParams.get("city") || "");
+  const [area, setArea] = useState(searchParams.get("area") || "");
+  const [minPrice, setMinPrice] = useState(
+    searchParams.get("min_price") || "",
+  );
+  const [maxPrice, setMaxPrice] = useState(
+    searchParams.get("max_price") || "",
+  );
+  const [minSurface, setMinSurface] = useState(
+    searchParams.get("min_surface") || "",
+  );
+  const [minRooms, setMinRooms] = useState(
+    searchParams.get("min_rooms") || "",
+  );
+  const [bedrooms, setBedrooms] = useState(
+    searchParams.get("bedrooms") || "",
+  );
+  const [language, setLanguage] = useState(
+    searchParams.get("locale") || "fr",
+  );
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -144,7 +167,9 @@ export default function NewAlertPage() {
 
           <div className="grid gap-5 md:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm text-slate-300">Ville</span>
+              <span className="mb-2 block text-sm text-slate-300">
+                Ville
+              </span>
 
               <input
                 value={city}
@@ -154,7 +179,9 @@ export default function NewAlertPage() {
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm text-slate-300">Zone</span>
+              <span className="mb-2 block text-sm text-slate-300">
+                Zone
+              </span>
 
               <input
                 value={area}
@@ -272,5 +299,21 @@ export default function NewAlertPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+function NewAlertFallback() {
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-slate-950 text-white">
+      <p className="text-slate-300">Chargement de l’alerte...</p>
+    </main>
+  );
+}
+
+export default function NewAlertPage() {
+  return (
+    <Suspense fallback={<NewAlertFallback />}>
+      <NewAlertContent />
+    </Suspense>
   );
 }

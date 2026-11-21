@@ -65,7 +65,9 @@ export default function SearchPage() {
     };
 
     Object.entries(values).forEach(([key, value]) => {
-      if (value) params.set(key, value);
+      if (value) {
+        params.set(key, value);
+      }
     });
 
     return params.toString();
@@ -80,6 +82,40 @@ export default function SearchPage() {
     minRooms,
     bedrooms,
     page,
+  ]);
+
+  const alertQueryString = useMemo(() => {
+    const params = new URLSearchParams();
+
+    const values = {
+      transaction,
+      property_type: propertyType,
+      city,
+      area,
+      min_price: minPrice,
+      max_price: maxPrice,
+      min_surface: minSurface,
+      min_rooms: minRooms,
+      bedrooms,
+    };
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      }
+    });
+
+    return params.toString();
+  }, [
+    transaction,
+    propertyType,
+    city,
+    area,
+    minPrice,
+    maxPrice,
+    minSurface,
+    minRooms,
+    bedrooms,
   ]);
 
   async function loadProperties() {
@@ -196,7 +232,7 @@ export default function SearchPage() {
             </div>
 
             <Link
-              href="/alerts/new"
+              href={`/alerts/new?${alertQueryString}`}
               className="rounded-lg border border-cyan-400 px-4 py-3 text-center text-cyan-300 hover:bg-cyan-400 hover:text-slate-950"
             >
               Créer une alerte
@@ -416,7 +452,7 @@ export default function SearchPage() {
               </p>
 
               <Link
-                href="/alerts/new"
+                href={`/alerts/new?${alertQueryString}`}
                 className="mt-6 inline-block rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-slate-950 hover:bg-cyan-300"
               >
                 Créer une alerte

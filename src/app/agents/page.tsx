@@ -37,7 +37,9 @@ function HomeContent() {
   if (isProcessing) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
-        <p className="text-slate-300">Confirmation de votre compte...</p>
+        <p className="text-slate-300">
+          Confirmation de votre compte...
+        </p>
       </main>
     );
   }
@@ -78,7 +80,7 @@ function HomeContent() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              ImmoPulse aide les professionnels de lÔÇÖimmobilier ├á centraliser
+              ImmoPulse aide les professionnels de l’immobilier à centraliser
               leurs demandes, suivre leurs biens et savoir chaque jour qui
               relancer.
             </p>
@@ -101,7 +103,9 @@ function HomeContent() {
           </div>
 
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-2xl shadow-cyan-950/20">
-            <p className="text-sm text-slate-400">Votre prochaine action</p>
+            <p className="text-sm text-slate-400">
+              Votre prochaine action
+            </p>
 
             <h2 className="mt-3 text-2xl font-semibold">
               Relancer les bons prospects au bon moment.
@@ -109,21 +113,30 @@ function HomeContent() {
 
             <div className="mt-8 space-y-4">
               <div className="rounded-xl border border-slate-700 bg-slate-950 p-4">
-                <p className="text-sm text-cyan-300">Demande de visite</p>
+                <p className="text-sm text-cyan-300">
+                  Demande de visite
+                </p>
+
                 <p className="mt-2 text-slate-200">
                   Appartement lumineux avec terrasse
                 </p>
               </div>
 
               <div className="rounded-xl border border-slate-700 bg-slate-950 p-4">
-                <p className="text-sm text-cyan-300">Alerte immobili├¿re</p>
+                <p className="text-sm text-cyan-300">
+                  Alerte immobilière
+                </p>
+
                 <p className="mt-2 text-slate-200">
-                  Un nouveau bien correspond aux crit├¿res dÔÇÖun chercheur.
+                  Un nouveau bien correspond aux critères d’un chercheur.
                 </p>
               </div>
 
               <div className="rounded-xl border border-slate-700 bg-slate-950 p-4">
-                <p className="text-sm text-cyan-300">Essai gratuit</p>
+                <p className="text-sm text-cyan-300">
+                  Essai gratuit
+                </p>
+
                 <p className="mt-2 text-slate-200">
                   Commencez sans paiement pendant 14 jours.
                 </p>
@@ -139,7 +152,9 @@ function HomeContent() {
 function HomeFallback() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
-      <p className="text-slate-300">Chargement dÔÇÖImmoPulse...</p>
+      <p className="text-slate-300">
+        Chargement d’ImmoPulse...
+      </p>
     </main>
   );
 }

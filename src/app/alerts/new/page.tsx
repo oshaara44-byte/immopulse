@@ -5,6 +5,7 @@ import {
   Suspense,
   useState,
 } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/browser";
 
@@ -42,10 +43,12 @@ function NewAlertContent() {
   );
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isCreated, setIsCreated] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setMessage("");
+    setIsCreated(false);
     setIsLoading(true);
 
     try {
@@ -79,6 +82,7 @@ function NewAlertContent() {
       setMessage(
         "Votre alerte est créée. Vous recevrez les offres correspondant à vos critères.",
       );
+      setIsCreated(true);
 
       setCity("");
       setArea("");
@@ -97,7 +101,14 @@ function NewAlertContent() {
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-12 text-white">
       <div className="mx-auto max-w-3xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
+        <Link
+          href="/search"
+          className="text-sm text-cyan-300 hover:underline"
+        >
+          ← Retour à la recherche
+        </Link>
+
+        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
           ImmoPulse
         </p>
 
@@ -295,6 +306,31 @@ function NewAlertContent() {
             <p className="rounded-lg border border-slate-700 bg-slate-950 p-4 text-sm text-slate-200">
               {message}
             </p>
+          ) : null}
+
+          {isCreated ? (
+            <div className="flex flex-wrap gap-3 border-t border-slate-800 pt-5">
+              <Link
+                href="/search"
+                className="rounded-lg bg-cyan-400 px-4 py-3 font-semibold text-slate-950 hover:bg-cyan-300"
+              >
+                Rechercher d’autres biens
+              </Link>
+
+              <Link
+                href="/"
+                className="rounded-lg border border-slate-700 px-4 py-3 text-slate-200 hover:border-cyan-400 hover:text-cyan-300"
+              >
+                Changer de profil
+              </Link>
+
+              <Link
+                href="/dashboard"
+                className="rounded-lg border border-slate-700 px-4 py-3 text-slate-200 hover:border-cyan-400 hover:text-cyan-300"
+              >
+                Tableau de bord
+              </Link>
+            </div>
           ) : null}
         </form>
       </div>

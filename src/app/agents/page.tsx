@@ -80,7 +80,7 @@ function HomeContent() {
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-              ImmoPulse aide les professionnels de l’immobilier à centraliser
+              ImmoPulse aide les professionnels de l'immobilier a centraliser
               leurs demandes, suivre leurs biens et savoir chaque jour qui
               relancer.
             </p>
@@ -124,11 +124,11 @@ function HomeContent() {
 
               <div className="rounded-xl border border-slate-700 bg-slate-950 p-4">
                 <p className="text-sm text-cyan-300">
-                  Alerte immobilière
+                  Alerte immobiliere
                 </p>
 
                 <p className="mt-2 text-slate-200">
-                  Un nouveau bien correspond aux critères d’un chercheur.
+                  Un nouveau bien correspond aux criteres d'un chercheur.
                 </p>
               </div>
 
@@ -149,19 +149,19 @@ function HomeContent() {
   );
 }
 
-function HomeFallback() {
+function AgentsFallback() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-white">
       <p className="text-slate-300">
-        Chargement d’ImmoPulse...
+        Chargement d'ImmoPulse...
       </p>
     </main>
   );
 }
 
-export default function HomePage() {
+export default function AgentsPage() {
   return (
-    <Suspense fallback={<HomeFallback />}>
+    <Suspense fallback={<AgentsFallback />}>
       <HomeContent />
     </Suspense>
   );

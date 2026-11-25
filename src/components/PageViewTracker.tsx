@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { trackEvent } from "@/lib/analytics";
 
-export default function PageViewTracker() {
+function PageViewTrackerContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -20,4 +20,16 @@ export default function PageViewTracker() {
   }, [pathname, searchParams]);
 
   return null;
+}
+
+function PageViewTrackerFallback() {
+  return null;
+}
+
+export default function PageViewTracker() {
+  return (
+    <Suspense fallback={<PageViewTrackerFallback />}>
+      <PageViewTrackerContent />
+    </Suspense>
+  );
 }
